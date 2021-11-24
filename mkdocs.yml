@@ -1,4 +1,6 @@
 site_name: 线性代数课本重制计划
+docs_dir: content
+site_dir: docs
 theme:
   name: material
   palette:
