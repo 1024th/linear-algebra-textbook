@@ -1,0 +1,657 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>5. 向量的内积 - 线性代数课本重制计划</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#546d78">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="线性代数课本重制计划" class="md-header__button md-logo" aria-label="线性代数课本重制计划" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            线性代数课本重制计划
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. 向量的内积
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="线性代数课本重制计划" class="md-nav__button md-logo" aria-label="线性代数课本重制计划" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    线性代数课本重制计划
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        线性代数课本重制计划
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          5. 相似矩阵
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="5. 相似矩阵" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          5. 相似矩阵
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.%20%E5%BC%95%E5%85%A5/" class="md-nav__link">
+        0. 引入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.%20%E7%9B%B8%E4%BC%BC%E7%9A%84%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        1. 相似的概念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.%20%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" class="md-nav__link">
+        2. 特征值与特征向量
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5. 向量的内积
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        5. 向量的内积
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    引入
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    共轭矩阵
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    向量的内积
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    向量的长度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    正交
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.%20%E9%85%89%E7%9B%B8%E4%BC%BC/" class="md-nav__link">
+        6. 酉相似
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.%20%E9%94%81%E7%88%B7%E7%9A%84%E6%8F%90%E9%86%92/" class="md-nav__link">
+        7. 锁爷的提醒
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          6. 二次型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="6. 二次型" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          6. 二次型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6.%20%E4%BA%8C%E6%AC%A1%E5%9E%8B/0.%20%E5%BC%95%E5%85%A5/" class="md-nav__link">
+        0. 引入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6.%20%E4%BA%8C%E6%AC%A1%E5%9E%8B/1.%20%E4%BA%8C%E6%AC%A1%E5%9E%8B%E7%9A%84%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F/" class="md-nav__link">
+        1. 二次型的矩阵形式
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    引入
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    共轭矩阵
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    向量的内积
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    向量的长度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    正交
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>5. 向量的内积</h1>
+                
+                <h2 id="_1">引入</h2>
+<p>仿照平面几何于几何空间中向量的内积，本节引进 <span class="arithmatex">\(n\)</span> 维向量的内积，从而推导出向量的长度与正交化的概念。</p>
+<h2 id="_2">共轭矩阵</h2>
+<p><strong>定义</strong> 设 <span class="arithmatex">\(A=(a_{ij})_{s\times n}\in\mathbb{C}^{s\times n}\)</span>，称 <span class="arithmatex">\(\bar{A}=(\overline{a_{ij}})\)</span> 为 <span class="arithmatex">\(A\)</span> 的共轭矩阵。例如：</p>
+<div class="arithmatex">\[
+\overline{\begin{pmatrix}3 &amp; 3+\mathrm{i} \\ \mathrm{i} &amp; 2-\mathrm{i}\end{pmatrix}} = \begin{pmatrix}3 &amp; 3-\mathrm{i} \\ -\mathrm{i} &amp; 2+\mathrm{i}\end{pmatrix}
+\]</div>
+<p>由复述运算的性质，易得：</p>
+<ol>
+<li><span class="arithmatex">\(\overline{(\overline A)}\)</span></li>
+<li><span class="arithmatex">\(\overline{kA} = \bar k \overline{A}\)</span></li>
+<li><span class="arithmatex">\(\overline{A^\mathrm{T}} = (\overline{A}) ^\mathrm{T}\)</span></li>
+<li><span class="arithmatex">\(\overline{A+B} = \overline{A}+\overline{B}\)</span></li>
+<li><span class="arithmatex">\(\overline{AB} = \overline{A}\,\overline{B}\)</span></li>
+<li>若 <span class="arithmatex">\(A\)</span> 可逆，则 <span class="arithmatex">\(\overline{A^{-1}}=(\overline{A})^{-1}\)</span></li>
+</ol>
+<h2 id="_3">向量的内积</h2>
+<p><strong>定义</strong> 设 <span class="arithmatex">\(\alpha=\begin{pmatrix}a_1 \\ \vdots \\ a_n\end{pmatrix},~ \beta = \begin{pmatrix}b_1 \\ \vdots \\ b_n\end{pmatrix}\)</span> 是两个 <span class="arithmatex">\(n\)</span> 维列向量，称数 <span class="arithmatex">\(\overline{\alpha^\mathrm{T}}\cdot\beta=\begin{pmatrix}a_1 &amp; \cdots &amp; a_n\end{pmatrix}\begin{pmatrix}b_1 \\ \vdots \\ b_n\end{pmatrix}=\sum\limits_{i=1}^{n} \overline{a_i}b_i\)</span> 为向量 <span class="arithmatex">\(\alpha\)</span> 与 <span class="arithmatex">\(\beta\)</span> 的内积，记成 <span class="arithmatex">\([\alpha,\beta]\)</span>。例如：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\left[\begin{pmatrix}1+\mathrm{i} \\ 2 \\ 2-\mathrm{i}\end{pmatrix}, \begin{pmatrix}\mathrm{i} \\ -2 \\ 2-\mathrm{i}\end{pmatrix}\right] = \begin{pmatrix}\overline{1+\mathrm{i}} &amp; \overline{2} &amp; \overline{2-\mathrm{i}}\end{pmatrix}\begin{pmatrix}\mathrm{i} \\ -2 \\ 2-\mathrm{i}\end{pmatrix}  \\
+={}&amp;(1-\mathrm{i})\mathrm{i}+2(-2)+(2+\mathrm{i})(2-\mathrm{i})=2+\mathrm{i}
+\end{aligned}
+\]</div>
+<p><strong>性质</strong></p>
+<ol>
+<li><span class="arithmatex">\([\alpha,0]=[0,\beta]=0\)</span></li>
+<li><span class="arithmatex">\([\beta,\alpha]=\overline{[\alpha,\beta]}\)</span></li>
+<li><span class="arithmatex">\([\alpha,l_1\beta_1+l_2\beta_2]=l_1[\alpha,\beta_1]+l_2[\alpha,\beta_2]\)</span><br />
+<span class="arithmatex">\([k_1\alpha_1+k_2\alpha_2,\beta]=\overline{k_1}[\alpha_1,\beta]+\overline{k_2}[\alpha_2,\beta]\)</span></li>
+<li><span class="arithmatex">\([\alpha,\alpha]\)</span> 是非负实数，且 <span class="arithmatex">\([\alpha,\alpha]=0\iff \alpha=0\)</span></li>
+</ol>
+<p>这些性质都可以由定义计算得到。如 <span class="arithmatex">\([\alpha,\alpha]=\sum\limits_{i=1}^{n} \overline{a_i}a_i = \sum\limits_{i=1}^{n} |a_i|^2\ge 0\)</span>，且 <span class="arithmatex">\([\alpha,\alpha]=0\iff |a_i|=0,~ i=1,\ldots ,n\iff a_i=0,~ i=1,\ldots ,n\iff \alpha=0\)</span>。</p>
+<h2 id="_4">向量的长度</h2>
+<p><strong>定义</strong> 称非负实数 <span class="arithmatex">\(\sqrt{[\alpha,\alpha]}\)</span> 为 <span class="arithmatex">\(\alpha\)</span> 的长度，记成 <span class="arithmatex">\(\lVert\alpha\rVert\)</span>。</p>
+<p>例如，<span class="arithmatex">\(\alpha=\begin{pmatrix}2+\mathrm{i} \\ 3 \\ -2\mathrm{i}\end{pmatrix}\)</span>，则 <span class="arithmatex">\(\lVert \alpha\rVert=\sqrt{5+9+4}=\sqrt{18}=3\sqrt{2}\)</span></p>
+<blockquote>
+<p>注：《大学代数》一书中答案误写为 <span class="arithmatex">\(2\sqrt{3}\)</span>。</p>
+</blockquote>
+<p><strong>性质</strong></p>
+<ol>
+<li><span class="arithmatex">\(\lVert\alpha\rVert\ge0\)</span>，且 <span class="arithmatex">\(\lVert\alpha\rVert=0\iff \alpha=0\)</span></li>
+<li><span class="arithmatex">\(\lVert k\alpha\rVert=|k|\cdot\lVert\alpha\rVert\)</span></li>
+</ol>
+<p><strong>定义</strong> 长度为 <span class="arithmatex">\(1\)</span> 的向量称为单位向量。若 <span class="arithmatex">\(\alpha\neq 0\)</span>，用 <span class="arithmatex">\(\frac{1}{\lVert \alpha\rVert}\)</span> 乘非零向量 <span class="arithmatex">\(\alpha\)</span> 的过程称为单位化运算。</p>
+<p>例如，把 <span class="arithmatex">\(\begin{pmatrix}1 \\ -2 \\ 2\end{pmatrix}\)</span> 单位化，得单位向量 <span class="arithmatex">\(\begin{pmatrix}\frac{1}{3} \\ -\frac{2}{3} \\ \frac{2}{3}\end{pmatrix}\)</span></p>
+<h2 id="_5">正交</h2>
+<p><strong>定义</strong> 若 <span class="arithmatex">\([\alpha,\beta]=0\)</span>，则称向量 <span class="arithmatex">\(\alpha\)</span> 与 <span class="arithmatex">\(\beta\)</span> 正交。显然，零向量与任何向量正交。</p>
+<p><strong>定义</strong> 两两正交的非零向量组称为正交组，由单位向量组成的正交组称为标准正交组。</p>
+<p>例如，<span class="arithmatex">\(\begin{pmatrix}\frac{1}{3} \\[4pt] \frac{2}{3} \\[4pt] \frac{2}{3}\end{pmatrix}, \begin{pmatrix}\frac{2}{3} \\[4pt] \frac{1}{3} \\[4pt] -\frac{2}{3}\end{pmatrix},\begin{pmatrix}\frac{2}{3} \\[4pt] -\frac{2}{3} \\[4pt] \frac{1}{3}\end{pmatrix}\)</span> 是标准正交组。<span class="arithmatex">\(\varepsilon_1=\begin{pmatrix}1 \\ 0 \\ \vdots \\ 0\end{pmatrix},\ldots ,\varepsilon_n=\begin{pmatrix}0 \\ 0 \\ \vdots \\ 1\end{pmatrix}\)</span> 是标准正交组。</p>
+<p><strong>命题</strong> 向量组 <span class="arithmatex">\(\alpha_1,\ldots ,\alpha_s\)</span> 是标准正交组 <span class="arithmatex">\(\iff [a_i,a_j]=\delta_{ij},~ i,j=1,2,\ldots ,s\iff([a_i,a_j])_{s\times s}=E_s\)</span></p>
+<p><strong>命题</strong> </p>
+<p><strong>命题</strong> </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../2.%20%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. 特征值与特征向量" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              2. 特征值与特征向量
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../6.%20%E9%85%89%E7%9B%B8%E4%BC%BC/" class="md-footer__link md-footer__link--next" aria-label="Next: 6. 酉相似" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              6. 酉相似
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
