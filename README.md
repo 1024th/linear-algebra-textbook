@@ -14,7 +14,7 @@
 本项目使用 Material for MkDocs。首先你需要安装它。推荐使用 Python 的 pip 安装
 
 ```bash
-pip install mkdocs-material
+pip install -r requirements.txt
 ```
 
 安装完成后，在项目根目录下运行
@@ -23,7 +23,7 @@ pip install mkdocs-material
 mkdocs serve
 ```
 
-用浏览器打开 http://127.0.0.1:8000/ ，即可实时预览文章。
+用浏览器打开 <http://127.0.0.1:8000/>，即可实时预览文章。
 
 当你撰写结束时，运行
 
