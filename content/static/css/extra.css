@@ -1,3 +1,10 @@
 .md-header[data-md-state="shadow"] {
   box-shadow: none !important;
 }
+.md-typeset div.arithmatex {
+  overflow: visible;
+}
+.katex-display {
+  overflow: auto hidden !important;
+  width: 100% !important;
+}
